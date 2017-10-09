@@ -11,4 +11,10 @@ public class TestCase {
         Assert.assertTrue(true);
     }
 
+    @Test
+    public void test002()
+    {
+        Assert.assertTrue(false);
+    }
+
 }
