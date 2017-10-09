@@ -1,0 +1,4 @@
+<servlet-mapping>
+  <servlet-name>com.navara.rest.RestApplication</servlet-name>
+  <url-pattern>/api</url-pattern>
+</servlet-mapping>
