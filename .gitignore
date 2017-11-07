@@ -1,0 +1,15 @@
+# Ignore intellij files
+.idea
+*.iml
+*.ipr
+*.iws
+*.ids
+
+# Generated files/directories
+target/
+build/
+bin/
+logs/
+*.class
+dependency-reduced-pom.xml
+junit*.properties
