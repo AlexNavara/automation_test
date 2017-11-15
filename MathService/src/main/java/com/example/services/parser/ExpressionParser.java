@@ -2,11 +2,12 @@ package com.example.services.parser;
 
 import com.example.models.Expression;
 import com.example.models.Operation;
-import com.example.models.ParseExpessionException;
+import com.example.models.ParseExpressionException;
 
 public class ExpressionParser implements IExpressionParser {
 
-    public Expression parse(final String expression) throws ParseExpessionException {
+    public Expression parse(final String expression) throws ParseExpressionException
+    {
         Expression result = new Expression();
         try {
             String trimmed = expression.replaceAll(" ", "");
@@ -31,10 +32,10 @@ public class ExpressionParser implements IExpressionParser {
                     result.setOperation(Operation.DIV);
                     break;
                 default:
-                    throw new ParseExpessionException("Operation " + operation + " is not permitted");
+                    throw new ParseExpressionException("Operation " + operation + " is not permitted");
             }
         } catch (Exception e) {
-            throw new ParseExpessionException("Cannot parse " + expression, e);
+            throw new ParseExpressionException("Cannot parse " + expression, e);
         }
 
         return result;

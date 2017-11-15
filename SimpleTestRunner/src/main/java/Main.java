@@ -7,7 +7,6 @@ public class Main
       TestRunner runner = new TestRunner();
       runner.add(MathServiceTest.class);
 
-      runner.run();
    }
 
 }
