@@ -6,6 +6,8 @@ public final class RestAssuredClientImplementation implements MathApiClient {
     @Override
     public String evaluateExpression(String expression) {
         return RestAssured.given()
+                .log().ifValidationFails()
+                .urlEncodingEnabled(false)
                 .baseUri("http://localhost:8080")
                 .expect()
                 .statusCode(200)
