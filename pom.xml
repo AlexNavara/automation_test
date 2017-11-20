@@ -9,6 +9,7 @@
     <module>MathService</module>
     <module>SimpleTestRunner</module>
     <module>WebServletSample</module>
+    <module>ApiTests</module>
   </modules>
   <packaging>pom</packaging>
 
