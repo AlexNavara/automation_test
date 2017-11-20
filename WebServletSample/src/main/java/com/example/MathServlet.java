@@ -25,7 +25,8 @@ public class MathServlet extends HttpServlet {
         String expression = req.getQueryString();
 
         try {
-            resp.getOutputStream().println(expression + " = " + calculator.evaluate(expression));
+            resp.setContentType("text/plain");
+            resp.getOutputStream().print(calculator.evaluate(expression));
         } catch (ParseExpressionException e) {
             resp.sendError(400, e.getMessage());
         }
