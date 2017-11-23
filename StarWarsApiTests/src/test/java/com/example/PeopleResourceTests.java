@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.api.models.StarWarsResponse;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class PeopleResourceTests
    public void collectionShouldHaveCorrectCount()
    {
       final int expectedResult = 87;
-      final int actualResult = apiClient.getCollectionResponse()
+      final int actualResult = apiClient.getCollection()
             .getResponse()
             .getCount();
 
@@ -34,12 +35,24 @@ public class PeopleResourceTests
    @Test
    public void shouldReturnNextPage()
    {
-      SWCollection<People> firstPage = apiClient.getCollectionResponse()
+      SWCollection<People> firstPage = apiClient.getCollection()
             .getResponse();
-      SWCollection<People> secondPage = apiClient.getCollectionResponse(firstPage.getNextPageUrl())
+      SWCollection<People> secondPage = apiClient.getCollection(firstPage.getNextPageUrl())
             .getResponse();
 
       Assert.assertNotNull(secondPage.getResults());
+   }
+
+   @Test
+   public void checkHttpResponseCodeAndStatus()
+   {
+      StarWarsResponse<People> response = apiClient.getById(1);
+
+      final int actualStatusCode = response.getSimplifiedHttpResponse().getStatusCode();
+      final String actualHttpStatus = response.getSimplifiedHttpResponse().getStatusMessage();
+
+      Assert.assertEquals(200, actualStatusCode);
+      Assert.assertEquals("OK", actualHttpStatus);
    }
 
 }

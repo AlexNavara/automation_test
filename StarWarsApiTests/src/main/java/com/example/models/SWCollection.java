@@ -17,4 +17,12 @@ public final class SWCollection<T extends SWEntity>
 
    @SerializedName("previous")
    private String previousPageUrl;
+
+   public boolean hasNextPage() {
+      return nextPageUrl != null && !nextPageUrl.isEmpty();
+   }
+
+   public boolean hasPreviousPage() {
+      return previousPageUrl != null && !previousPageUrl.isEmpty();
+   }
 }

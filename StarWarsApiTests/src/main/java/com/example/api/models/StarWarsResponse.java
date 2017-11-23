@@ -1,12 +1,16 @@
 package com.example.api.models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public final class StarWarsResponse<T>
+@NoArgsConstructor
+public final class StarWarsResponse<T> extends SimplifiedHttpResponse
 {
-        private int httpStatusCode;
-        private String httpStatusMessage;
+        private SimplifiedHttpResponse simplifiedHttpResponse;
         private T response;
-        private String errorMessage;
+
+        public StarWarsResponse(SimplifiedHttpResponse httpResponse) {
+                this.simplifiedHttpResponse = httpResponse;
+        }
 }

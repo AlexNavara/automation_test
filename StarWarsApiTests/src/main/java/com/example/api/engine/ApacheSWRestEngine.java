@@ -1,6 +1,6 @@
 package com.example.api.engine;
 
-import com.example.api.models.HttpStarWarsResponse;
+import com.example.api.models.SimplifiedHttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -15,17 +15,17 @@ import java.net.URI;
 public final class ApacheSWRestEngine implements SWRestApiEngine
 {
    @Override
-   public HttpStarWarsResponse get(final String url)
+   public SimplifiedHttpResponse get(final String url)
    {
-      HttpStarWarsResponse response = new HttpStarWarsResponse();
+      SimplifiedHttpResponse simplifiedHttpResponse = new SimplifiedHttpResponse();
 
       CloseableHttpClient client = HttpClientBuilder.create().build();
       HttpGet request = new HttpGet(URI.create(url));
 
       try(CloseableHttpResponse httpResponse = client.execute(request))
       {
-         response.setStatusCode(httpResponse.getStatusLine().getStatusCode());
-         response.setStatusMessage(httpResponse.getStatusLine().getReasonPhrase());
+         simplifiedHttpResponse.setStatusCode(httpResponse.getStatusLine().getStatusCode());
+         simplifiedHttpResponse.setStatusMessage(httpResponse.getStatusLine().getReasonPhrase());
 
          final StringBuilder bodyBuilder = new StringBuilder();
 
@@ -38,7 +38,7 @@ public final class ApacheSWRestEngine implements SWRestApiEngine
             }
          }
 
-         response.setBody(bodyBuilder.toString());
+         simplifiedHttpResponse.setBody(bodyBuilder.toString());
 
       }
       catch (IOException e)
@@ -46,6 +46,6 @@ public final class ApacheSWRestEngine implements SWRestApiEngine
          e.printStackTrace();
       }
 
-      return response;
+      return simplifiedHttpResponse;
    }
 }

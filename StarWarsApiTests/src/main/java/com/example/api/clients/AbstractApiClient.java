@@ -3,7 +3,7 @@ package com.example.api.clients;
 import java.lang.reflect.Type;
 
 import com.example.api.engine.SWRestApiEngine;
-import com.example.api.models.HttpStarWarsResponse;
+import com.example.api.models.SimplifiedHttpResponse;
 import com.example.api.models.StarWarsResponse;
 import com.example.config.ConfigProvider;
 import com.example.models.SWCollection;
@@ -25,43 +25,37 @@ public abstract class AbstractApiClient<T extends SWEntity>
       this.entityType = getResourceClass();
    }
 
-   public StarWarsResponse<T> getEntityResponse(final int entityId)
+   public StarWarsResponse<T> getById(final int entityId)
    {
       final String url = String.format("%s/%s/%d/", ConfigProvider.INSTANCE.getServerUrl(), getResourceName(), entityId);
-      return getEntityResponse(url);
+      return getById(url);
    }
 
-   public StarWarsResponse<T> getEntityResponse(final String url)
+   public StarWarsResponse<T> getById(final String url)
    {
       return getGenericResponse(url, entityType);
    }
 
-   public StarWarsResponse<SWCollection<T>> getCollectionResponse()
+   public StarWarsResponse<SWCollection<T>> getCollection()
    {
       final String url = String.format("%s/%s/", ConfigProvider.INSTANCE.getServerUrl(), getResourceName());
-      return getCollectionResponse(url);
+      return getCollection(url);
    }
 
-   public StarWarsResponse<SWCollection<T>> getCollectionResponse(final String url)
+   public StarWarsResponse<SWCollection<T>> getCollection(final String url)
    {
       return getGenericResponse(url, collectionType);
    }
 
-   private <R> StarWarsResponse<R> getGenericResponse(final String url, final Type responseType)
+   private <GT> StarWarsResponse<GT> getGenericResponse(final String url, final Type responseType)
    {
-      HttpStarWarsResponse httpResponse = engine.get(url);
+      SimplifiedHttpResponse httpResponse = engine.get(url);
 
-      StarWarsResponse<R> response = new StarWarsResponse<>();
-      response.setHttpStatusCode(httpResponse.getStatusCode());
-      response.setHttpStatusMessage(httpResponse.getStatusMessage());
+      StarWarsResponse<GT> response = new StarWarsResponse<>(httpResponse);
 
       if (isSuccess(httpResponse.getStatusCode()))
       {
          response.setResponse(gson().fromJson(httpResponse.getBody(), responseType));
-      }
-      else
-      {
-         response.setErrorMessage(httpResponse.getBody());
       }
 
       return response;
