@@ -1,5 +1,7 @@
 package com.example.api;
 
+import com.example.config.ConfigProvider;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,7 +14,7 @@ public final class JavaNetClientImplementation implements MathApiClient {
         final StringBuilder response = new StringBuilder();
 
         try {
-            URL url = new URL("http://localhost:8080/Calculator?" + expression.replaceAll(" ", ""));
+            URL url = new URL(ConfigProvider.INSTANCE.getServerUrl() + "/Calculator?" + expression.replaceAll(" ", ""));
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");

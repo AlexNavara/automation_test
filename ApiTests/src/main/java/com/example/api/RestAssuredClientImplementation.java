@@ -1,5 +1,6 @@
 package com.example.api;
 
+import com.example.config.ConfigProvider;
 import io.restassured.RestAssured;
 
 public final class RestAssuredClientImplementation implements MathApiClient {
@@ -8,7 +9,7 @@ public final class RestAssuredClientImplementation implements MathApiClient {
         return RestAssured.given()
                 .log().ifValidationFails()
                 .urlEncodingEnabled(false)
-                .baseUri("http://localhost:8080")
+                .baseUri(ConfigProvider.INSTANCE.getServerUrl())
                 .expect()
                 .statusCode(200)
                 .when()

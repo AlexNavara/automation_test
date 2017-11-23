@@ -1,5 +1,6 @@
 package com.example.api;
 
+import com.example.config.ConfigProvider;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -15,7 +16,7 @@ public final class ApacheClientImplementation implements MathApiClient {
     public String evaluateExpression(String expression) {
 
         final HttpUriRequest request =
-                new HttpGet(URI.create("http://localhost:8080/Calculator?" + expression.replaceAll(" ", "")));
+                new HttpGet(URI.create(ConfigProvider.INSTANCE.getServerUrl() + "/Calculator?" + expression.replaceAll(" ", "")));
         final StringBuilder result = new StringBuilder();
 
         try (CloseableHttpResponse response =
