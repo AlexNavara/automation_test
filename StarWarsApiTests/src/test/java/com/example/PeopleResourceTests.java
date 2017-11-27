@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.api.models.StarWarsResponse;
+import com.example.assertions.PeopleAssertion;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -53,6 +54,14 @@ public class PeopleResourceTests
 
       Assert.assertEquals(200, actualStatusCode);
       Assert.assertEquals("OK", actualHttpStatus);
+   }
+
+   @Test
+   public void customAssertionTest()
+   {
+      People luke = apiClient.getById(1).getResponse();
+
+      PeopleAssertion.assertThat(luke).hasName("Luke Skywalker");
    }
 
 }
