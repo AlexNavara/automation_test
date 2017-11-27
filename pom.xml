@@ -10,6 +10,7 @@
     <module>SimpleTestRunner</module>
     <module>WebServletSample</module>
     <module>ApiTests</module>
+    <module>StarWarsApiTests</module>
   </modules>
   <packaging>pom</packaging>
 
