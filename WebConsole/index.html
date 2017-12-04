@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <script src="js/app.js"></script>
+</head>
+<body>
+<input type="text" id="expression"/>
+<button onclick="doRequest()">Send expression</button>
+
+<div class="Base controls">
+    <button onclick="showTable()">Show table</button>
+    <button onclick="hideTable()">Hide table</button>
+    <button onclick="refreshTable()">Refresh</button>
+    <button onclick="clearHistory()">Clear History</button>
+</div>
+
+<br/>
+<table id="History" hidden>
+    <tbody>
+    </tbody>
+</table>
+</body>
+</html>
