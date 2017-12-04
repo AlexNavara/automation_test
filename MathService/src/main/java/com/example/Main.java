@@ -1,17 +1,19 @@
 package com.example;
 
-import com.example.services.Calculator;
-import com.example.services.maths.MathService;
-import com.example.services.parser.ExpressionParser;
+import com.example.dao.EquationDAO;
+import com.example.dao.EquationDAOImpl;
+import com.example.models.Equation;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
-        Calculator calculator = new Calculator(new ExpressionParser(), new MathService());
+    public static void main(String[] args) {
+        EquationDAO dao = new EquationDAOImpl();
 
-        int result = calculator.evaluate("5 + 5");
+        Equation eq = new Equation();
+        eq.setResult(5);
+        eq.setExpression("2+3");
 
-        System.out.println(result);
+        Equation savedEquation = dao.insert(eq);
     }
 
 }

@@ -1,8 +1,9 @@
 package com.example.services;
 
-import com.example.services.maths.MathService;
+import com.example.dao.EquationDAOImpl;
+import com.example.models.Equation;
+import com.example.services.maths.Evaluator;
 import com.example.services.parser.ExpressionParser;
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,22 +15,22 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class CalculatorIT {
+public class MathServiceIT {
 
-    private static Calculator calculator;
+    private static MathService mathService;
 
     private String input;
     private int expected;
 
-    public CalculatorIT(String input, int expected) {
+    public MathServiceIT(String input, int expected) {
         this.input = input;
         this.expected = expected;
     }
 
     @Test
     public void shouldCalculateCorrectExpression() throws Exception {
-        int actual = calculator.evaluate(input);
-        assertEquals(expected, actual);
+        Equation actual = mathService.evaluate(input);
+        assertEquals(expected, (int)actual.getResult());
     }
 
     @Parameterized.Parameters(name = "Input: {0}")
@@ -44,11 +45,11 @@ public class CalculatorIT {
 
     @BeforeClass
     public static void setupClass() {
-        calculator = new Calculator(new ExpressionParser(), new MathService());
+        mathService = new MathService(new ExpressionParser(), new Evaluator(), new EquationDAOImpl());
     }
 
     @AfterClass
-    public static void teadDownClass() {
-        calculator = null;
+    public static void tearDownClass() {
+        mathService = null;
     }
 }

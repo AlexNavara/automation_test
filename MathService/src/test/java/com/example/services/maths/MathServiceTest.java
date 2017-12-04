@@ -10,11 +10,11 @@ import static org.junit.Assert.assertEquals;
 
 public class MathServiceTest {
 
-    private static IMathService mathService;
+    private static IEvaluator mathService;
 
     @BeforeClass
     public static void setupClass() {
-        mathService = new MathService();
+        mathService = new Evaluator();
     }
 
     @AfterClass
