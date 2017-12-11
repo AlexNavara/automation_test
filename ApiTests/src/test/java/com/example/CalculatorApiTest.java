@@ -6,18 +6,21 @@ import com.example.api.MathApiClient;
 import com.example.api.RestAssuredClientImplementation;
 import com.example.models.Equation;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class CalculatorApiTest {
 
     private MathApiClient apiClient;
 
+    @Ignore
     @Test
     public void withJavaNetClient() {
 //        apiClient = new JavaNetClientImplementation();
         executeTest();
     }
 
+    @Ignore
     @Test
     public void withApacheClient() {
 //        apiClient = new ApacheClientImplementation();
