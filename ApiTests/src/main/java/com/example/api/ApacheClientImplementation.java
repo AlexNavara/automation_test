@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 
-public final class ApacheClientImplementation implements MathApiClient {
-    @Override
+public final class ApacheClientImplementation {
+//    @Override
     public String evaluateExpression(String expression) {
 
         final HttpUriRequest request =
