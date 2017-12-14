@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public final class JavaNetClientImplementation implements MathApiClient {
-    @Override
+public final class JavaNetClientImplementation{
+//    @Override
     public String evaluateExpression(String expression) {
         final StringBuilder response = new StringBuilder();
 

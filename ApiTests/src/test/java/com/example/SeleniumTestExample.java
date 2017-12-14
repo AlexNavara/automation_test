@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.pages.MainGooglePage;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,21 +11,10 @@ public class SeleniumTestExample {
 
     @Test
     public void test() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "/Users/alex/Tools/web_drivers/chromedriver");
-
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().fullscreen();
-        driver.get("http://google.com");
-
-        WebElement searchField = driver.findElement(By.name("q"));
-        searchField.sendKeys("Selenium automation");
-
-        WebElement searchButton = driver.findElement(By.cssSelector("center > input"));
-        searchButton.click();
+        MainGooglePage page = new MainGooglePage();
+        page.open().executeSearch("Hello world");
 
         Thread.sleep(5_000);
-
-        driver.quit();
     }
 
 }

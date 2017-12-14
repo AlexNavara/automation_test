@@ -14,6 +14,8 @@ public enum ConfigProvider
                 try
                 {
                         properties.load(ConfigProvider.class.getClassLoader().getResourceAsStream("api.properties"));
+                        properties.putAll(System.getProperties());
+
                 }
                 catch (IOException e)
                 {
