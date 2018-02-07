@@ -26,7 +26,7 @@ public class ListenerInjectionRunnerTest {
 
     @Test
     public void failingTest() {
-        Assert.assertTrue(false);
+        Assert.assertTrue(true);
     }
 
 }
