@@ -18,11 +18,11 @@ public class ListenerInjectionRunnerTest {
         Assert.assertTrue(true);
     }
 
-    @Ignore
-    @Test
-    public void ignoredTest() {
-
-    }
+//    @Ignore
+//    @Test
+//    public void ignoredTest() {
+//
+//    }
 
     @Test
     public void failingTest() {
