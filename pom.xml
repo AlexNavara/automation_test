@@ -12,6 +12,7 @@
     <module>ApiTests</module>
     <module>StarWarsApiTests</module>
     <module>JUnitCustomizationSamples</module>
+    <module>GenericContainerSample</module>
   </modules>
   <packaging>pom</packaging>
 
